@@ -1,16 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
 import prisma from '../config/db';
-import '../types/express';
-import { PaymentLink } from '@prisma/client';
-
 declare global {
-  namespace Express {
-    interface Request {
-      user: {
-        id: string;
-      };
+    namespace Express {
+      interface Request {
+        user: {
+          id: string;
+        };
+      }
     }
-  }
 }
 
 // Create Payment Link
