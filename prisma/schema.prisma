@@ -21,19 +21,21 @@ model User {
   email     String   @unique
   password  String
   role      Role     @default(USER)
-  links     Link[]
+  paymentLinks     PaymentLink[]
   createdAt DateTime @default(now())
 }
 
-model Link {
-  id          String   @id @default(uuid())
-  title       String
-  amount      Float
+model PaymentLink {
+  id          String      @id @default(uuid())
+  title       String  
   description String?
-  status      LinkStatus @default(PENDING)
-  user        User     @relation(fields: [userId], references: [id])
+  amount      Float
+  currency    String      @default("NGN")
+  status      paymentLinkStatus  @default(PENDING)
+  user        User        @relation(fields: [userId], references: [id])
   userId      String
-  createdAt   DateTime @default(now())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
 }
 
 enum Role {
@@ -41,7 +43,7 @@ enum Role {
   ADMIN
 }
 
-enum LinkStatus {
+enum paymentLinkStatus {
   PENDING
   PAID
   EXPIRED
