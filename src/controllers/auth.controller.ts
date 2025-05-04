@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { prisma } from '../config/db';
+import prisma from '../config/db';
 import { signupSchema, loginSchema } from "../validators/auth.schema";
 
 export const signup = async (
